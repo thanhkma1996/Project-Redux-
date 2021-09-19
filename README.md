@@ -30,4 +30,12 @@ export default connect(mapToStateProps, …)(...);
 
 Tại Reducers/tasks.js, lưu trên localStorage
 
+- Bài 2 : Chúng ta thực hiện chức năng add 1 chức năng
+Tìm hiểu về mapStateProps và mapDispatchToProps
+
+_ mapStateToProps : chuyển state từ store thành props của component
+_ mapDispatchToProps : chuyển các action thành props.
+
+
 💻 HAPPY CODING!!! ❤️
+

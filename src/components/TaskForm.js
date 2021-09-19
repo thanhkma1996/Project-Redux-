@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from './../actions/index'
 
 class TaskForm extends Component {
     constructor(props){
@@ -63,7 +65,8 @@ class TaskForm extends Component {
     onSubmit = (event) => {
             // Khong cho form reload lai khi submit
         event.preventDefault();
-        this.props.onSubmit(this.state);
+        this.props.onAddTask(this.state) // lấy từ dispatch phía dưới
+        // this.props.onSubmit(this.state);
         this.Onclear();
         this.onCloseForm();
     }
@@ -109,4 +112,26 @@ class TaskForm extends Component {
   
 }
 
-export default TaskForm;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+    // co the dung hoac k can khai bao luc nay ham export default
+    // connect(null,mapDispatchToProps) thi van work vi du lieu lay tu form
+    // input sau do truyen len store de xu ly
+}
+
+const mapDispatchToProps = (dispatch,props) => {
+    return {
+        onAddTask: (task) => {
+            dispatch(actions.addTask(task))
+
+            // actions này gọi từ index.js của reducers
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);
+
+// _ mapStateToProps : chuyển state từ store thành props của component
+// _ mapDispatchToProps : chuyển các action thành props.

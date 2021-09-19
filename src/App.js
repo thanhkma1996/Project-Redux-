@@ -8,7 +8,6 @@ class App extends Component {
   constructor(props){
       super(props);
       this.state = {
-          task: [], // id,name,unique,
           isDisplayTaskForm: false,
           taskEditing: null,
           filter: {
@@ -21,58 +20,7 @@ class App extends Component {
       }
   }
 
-  // su dung lifeCycel
-  // Luu du lieu cua localStrogate vao state task
-  componentWillMount(){
-      if(localStorage && localStorage.getItem('task')){
-          var datatask = JSON.parse(localStorage.getItem('task'));
-          this.setState({
-              task: datatask
-          })
-      }
-  }
 
-//   onGenerate = () =>{
-//      var data= [
-//         {
-//             id:this.generateID(),
-//             name: "Hoc lap trinh",
-//             status: true
-//         },
-
-//          {
-//             id:this.generateID(),
-//             name: "Hoc tieng anh",
-//             status: false
-//         },
-
-//          {
-//             id:this.generateID(),
-//             name: "Hoc DLCMDCS",
-//             status: true
-//         }
-//      ];
-
-//      this.setState({
-//         task: data
-//      })
-
-//      // luu du lieu tren localstorage
-
-//     localStorage.setItem('task',JSON.stringify(data));
-
-//     //  console.log(data);
-//   }
-
-// create generate id auto
-//https://www.codegrepper.com/code-examples/javascript/auto+generate+id+in+javascript
-  s4(){
-      return Math.random().toString(36).substr(2, 9);
-  }
-
-  generateID(){
-      return this.s4() +  this.s4() + '-' +  this.s4();
-  }
 
   OnToggleForm = () => {
       if(this.state.isDisplayTaskForm && this.state.taskEditing !== null) {
@@ -230,19 +178,19 @@ class App extends Component {
     }
 
     // Sort status
-    if(sortBy === 'name'){
-        datagenerate.sort((a,b) => {
-            if(a.name > b.name) return sortValue;
-            else if(a.name < b.name) return -sortValue;
-            else return 0;
-        })
-    }else {
-        datagenerate.sort((a,b) => {
-         if(a.status > b.status) return -sortValue;
-            else if(a.status < b.status) return sortValue;
-            else return 0;
-        })
-    }
+    // if(sortBy === 'name'){
+    //     datagenerate.sort((a,b) => {
+    //         if(a.name > b.name) return sortValue;
+    //         else if(a.name < b.name) return -sortValue;
+    //         else return 0;
+    //     })
+    // }else {
+    //     datagenerate.sort((a,b) => {
+    //      if(a.status > b.status) return -sortValue;
+    //         else if(a.status < b.status) return sortValue;
+    //         else return 0;
+    //     })
+    // }
 
 
     var showContetTaskForm = showTaskForm ? 
