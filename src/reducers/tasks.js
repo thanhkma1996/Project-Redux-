@@ -27,7 +27,7 @@ var myReducer = (state= initialState,action) => {
                 state.push(newTask);
                 localStorage.setItem('task',JSON.stringify(state))
                 return [...state]; // cach viet nay tuong tu ham map
-                // spread operator (...) 
+                // spread operator (...) https://viblo.asia/p/su-dung-spread-operator-trong-javascript-gDVK24welLj
             default: 
             return state
         }

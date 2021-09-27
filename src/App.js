@@ -4,6 +4,9 @@ import TaskForm from "./components/TaskForm";
 import Control from "./components/Control";
 import TableResult from "./components/TableResult";
 
+import {connect} from 'react-redux';
+import * as actions from './actions/index';
+
 class App extends Component {
   constructor(props){
       super(props);
@@ -23,22 +26,12 @@ class App extends Component {
 
 
   OnToggleForm = () => {
-      if(this.state.isDisplayTaskForm && this.state.taskEditing !== null) {
-           this.setState({
-                isDisplayTaskForm: true,
-                taskEditing: null,
-             })
-      }else {
-            this.setState({
-            isDisplayTaskForm: !this.props.isDisplayTaskForm
-            })
-      }
+    this.props.onToggleForm();
+    // console.log('test');
   }
 
   onCloseForm = ()=>{
-    this.setState({
-          isDisplayTaskForm: false
-      })
+    this.props.onCloseForm();
   }
 
   onSubmit = (data) => {
@@ -105,7 +98,7 @@ class App extends Component {
           taskEditing: taskEditing
       })
 
-      this.OnToggleForm();
+    //   this.OnToggleForm();
   }
 
    findIndex = (id) => {
@@ -150,7 +143,7 @@ class App extends Component {
 
   render() {
     var datagenerate = this.state.task;
-    var showTaskForm = this.state.isDisplayTaskForm;
+    var {isDisplayForm} = this.props;
 
     // Function check filter
     var {taskEditing,filter,keyword,sortBy,sortValue} = this.state;
@@ -193,7 +186,7 @@ class App extends Component {
     // }
 
 
-    var showContetTaskForm = showTaskForm ? 
+    var showContetTaskForm = isDisplayForm ? 
         <TaskForm onSubmit={this.onSubmit} 
                     onCloseForm={this.onCloseForm} 
                     taskEdit = {taskEditing}
@@ -207,10 +200,10 @@ class App extends Component {
            <hr/>
        </div>
        <div className="row">
-           <div className={showTaskForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : '' } >
+           <div className={isDisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : '' } >
                {showContetTaskForm}
            </div>
-           <div className={showTaskForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12" }>
+           <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12" }>
                <button type="button" 
                 className="btn btn-primary btn-heading"
                 onClick={this.OnToggleForm}
@@ -248,4 +241,22 @@ class App extends Component {
   
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        isDisplayForm: state.isDisplayForm
+    };
+}
+
+const mapDispatchToProps = (dispatch,props) => {
+    return {
+        onToggleForm: () => {
+            dispatch(actions.toggleForm())
+        }, 
+
+        onCloseForm: () => {
+            dispatch(actions.closeForm())
+        }
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

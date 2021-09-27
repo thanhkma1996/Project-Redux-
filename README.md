@@ -1,5 +1,7 @@
 # Project ToDoAPP combinae with Redux
 - Bài 1 Tổng kết một số kiến thức đã học
+Cach hoat dong cua Redux : https://viblo.asia/p/redux-co-ban-m68Z00JdZkG
+action -> reducer -> store -> view
 
 Hiển thị Danh sách = Redux
 
@@ -36,6 +38,9 @@ Tìm hiểu về mapStateProps và mapDispatchToProps
 _ mapStateToProps : chuyển state từ store thành props của component
 _ mapDispatchToProps : chuyển các action thành props.
 
+- Bài 3: Update 1 số tính năng add,close Form
+ 
+ Ôn tập lại một số kỹ năng trong Redux sử lý action -> reducer -> store -> view để thực hiện các chức năng cần thiết
 
 💻 HAPPY CODING!!! ❤️
 
